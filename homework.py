@@ -51,17 +51,19 @@ def test_find_suitable_user():
     ]
 
     # Найдите пользователя с именем "Olga"
-    suitable_user = next(user for user in users if user['name'] == 'Olga')
-    assert suitable_user == {"name": "Olga", "age": 45}
+    for suitable_users in users:
+        if suitable_users['name'] == 'Olga':
+            assert suitable_users == {"name": "Olga", "age": 45}
 
-    # Найдите всех пользователей младше 20 лет
-    suitable_users = [user for user in users if user['age'] < 20]
+    # TODO найдите всех пользователей младше 20 лет
+    suitable_users = []
+    for user in users:
+        if user['age'] < 20:
+            suitable_users.append(user)
     assert suitable_users == [
         {"name": "Stanislav", "age": 15},
         {"name": "Maria", "age": 18},
     ]
-
-
 # Сделайте функцию, которая будет печатать
 # читаемое имя переданной ей функции и значений аргументов.
 # Вызовите ее внутри функций, описанных ниже
