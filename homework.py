@@ -24,7 +24,6 @@ def test_dark_theme_by_time_and_user_choice():
     """
     current_time = time(hour=16)
     dark_theme_enabled_by_user = True
-    is_dark_theme = False
 
     if dark_theme_enabled_by_user:
         is_dark_theme = True
