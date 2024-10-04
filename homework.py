@@ -1,7 +1,5 @@
 from datetime import time
 
-from trio import current_time
-
 
 def test_dark_theme_switch():
     """
@@ -81,6 +79,24 @@ def test_find_suitable_user():
 # "Open Browser [Chrome]"
 
 
+def print_readable_function_name(func, *args, **kwargs):
+    # Получаем имя функции и заменяем подчеркивания на пробелы
+    func_name = func.__name__.replace('_', ' ').title()
+
+    # Формируем строку с аргументами
+    arg_list = []
+    for arg in args:
+        arg_list.append(str(arg))
+
+    for key, value in kwargs.items():
+        arg_list.append(f"{key}={value}")
+
+    args_string = ", ".join(arg_list)
+
+    # Выводим результат
+    print(f"{func_name} [{args_string}]")
+
+
 def test_readable_function():
     open_browser(browser_name="Chrome")
     go_to_companyname_homepage(page_url="https://companyname.com")
@@ -88,15 +104,21 @@ def test_readable_function():
 
 
 def open_browser(browser_name):
-    actual_result = None
-    assert actual_result == "Open Browser [Chrome]"
+    print_readable_function_name(open_browser, browser_name)
+    actual_result = f"Open Browser [{browser_name}]"
+    expected_result = "Open Browser [Chrome]"
+    assert actual_result == expected_result, f"Ожидалось: {expected_result}, но получено: {actual_result}"
 
 
 def go_to_companyname_homepage(page_url):
-    actual_result = None
-    assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
+    print_readable_function_name(go_to_companyname_homepage, page_url)
+    actual_result = f"Go To Companyname Homepage [{page_url}]"
+    expected_result = "Go To Companyname Homepage [https://companyname.com]"
+    assert actual_result == expected_result, f"Ожидалось: {expected_result}, но получено: {actual_result}"
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
-    assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
+    print_readable_function_name(find_registration_button_on_login_page, page_url, button_text=button_text)
+    actual_result = f"Find Registration Button On Login Page [{page_url}, {button_text}]"
+    expected_result = "Find Registration Button On Login Page [https://companyname.com/login, Register]"
+    assert actual_result == expected_result, f"Ожидалось: {expected_result}, но получено: {actual_result}"
