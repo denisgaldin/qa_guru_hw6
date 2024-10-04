@@ -25,15 +25,15 @@ def test_dark_theme_by_time_and_user_choice():
     dark_theme_enabled_by_user = None - Пользователь не сделал выбор (используется переключение по времени системы)
     """
 
-current_time = time(hour=16)
-dark_theme_enabled_by_user = True
-# TODO переключите темную тему в зависимости от времени суток,
-#  но учтите что темная тема может быть включена вручную
+    current_time = time(hour=16)
+    dark_theme_enabled_by_user = True
+    # TODO переключите темную тему в зависимости от времени суток,
+    #  но учтите что темная тема может быть включена вручную
 
+    is_dark_theme = (dark_theme_enabled_by_user, current_time.hour not in range(6, 22))[
+        dark_theme_enabled_by_user is None]
 
-is_dark_theme = (dark_theme_enabled_by_user, current_time.hour not in range(6, 22))[dark_theme_enabled_by_user is None]
-
-assert is_dark_theme is True
+    assert is_dark_theme is True
 
 
 def test_find_suitable_user():
@@ -108,6 +108,3 @@ def find_registration_button_on_login_page(page_url, button_text):
     actual_result = print_readable_function_name(find_registration_button_on_login_page, page_url,
                                                  button_text=button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, button_text=Register]"
-
-
-test_readable_function()
