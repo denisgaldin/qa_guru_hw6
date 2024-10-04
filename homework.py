@@ -40,6 +40,7 @@ def test_dark_theme_by_time_and_user_choice():
 
     assert is_dark_theme is True
 
+
 def test_find_suitable_user():
     """
     Найдите нужного пользователя по условиям в списке пользователей
@@ -93,23 +94,25 @@ def print_readable_function_name(func, *args, **kwargs):
 
 
 def test_readable_function():
-    assert open_browser(browser_name="Chrome") == "Open Browser [Chrome]"
-    assert go_to_companyname_homepage(
-        page_url="https://companyname.com") == "Go To Companyname Homepage [https://companyname.com]"
-    assert find_registration_button_on_login_page(page_url="https://companyname.com/login",
-                                                  button_text="Register") == "Find Registration Button On Login Page [https://companyname.com/login, button_text=Register]"
+    open_browser(browser_name="Chrome")
+    go_to_companyname_homepage(page_url="https://companyname.com")
+    find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
 def open_browser(browser_name):
-    return print_readable_function_name(open_browser, browser_name)
+    actual_result = print_readable_function_name(open_browser, browser_name)
+    assert actual_result == "Open Browser [Chrome]"
 
 
 def go_to_companyname_homepage(page_url):
-    return print_readable_function_name(go_to_companyname_homepage, page_url)
+    actual_result = print_readable_function_name(go_to_companyname_homepage, page_url)
+    assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    return print_readable_function_name(find_registration_button_on_login_page, page_url, button_text=button_text)
+    actual_result = print_readable_function_name(find_registration_button_on_login_page, page_url,
+                                                 button_text=button_text)
+    assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, button_text=Register]"
 
 
 test_readable_function()
